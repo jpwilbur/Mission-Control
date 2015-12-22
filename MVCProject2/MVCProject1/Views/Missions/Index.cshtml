@@ -1,0 +1,28 @@
+﻿@model IEnumerable<MVCProject1.Models.MissionModel>
+@{
+    ViewBag.Title = "Missions";
+}
+
+<h2>Missions</h2>
+
+<p>Select your mission:</p>
+
+@{int i = 3;}
+@foreach (var inst in Model)
+{
+    if (i % 3 == 0)
+    {@Html.Raw("<div class=\"row\">")}
+                                    <div class="col-sm-4 col-lg-4 col-md-4">
+                                        <div class="thumbnail">
+                                            <img src=@Html.DisplayFor(model => inst.missionFlagLink) class="img-thumbnail" alt="" />                                            
+                                            <div class="text-center">
+                                                <h3>
+                                                    @Html.ActionLink(inst.missionName, "Mission", new { id = inst.missionID})
+                                                </h3>
+                                            </div>   
+                                        </div>
+                                    </div>
+    if (i % 3 == 2 || Model.Count() == i - 2)
+    {@Html.Raw("</div>")}
+    i++;
+}

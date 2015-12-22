@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Contact Us";
+}
+<h2>@ViewBag.Title</h2>
+
+<div class="text-center">
+    <div class="row">
+        <div class="thumbnail col-sm-offset-4 col-sm-4">
+            <h4>If you would like to contact us, feel free to fill out the following info.</h4>
+            @*creates form to refresh after user hits submit*@
+            @using (Html.BeginForm())
+            {
+                <div>@Html.TextBox("Reply here", "", new { style = "width: 600px", placeholder = "Enter your name..." })</div><br />
+                <div>@Html.TextBox("Reply here", "", new { style = "width: 600px", placeholder = "Enter your email address..." })</div><br />
+                //cool dropdown the dropdown to have the input of what the user chooses
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        What's the Subject...?
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="#" data-value="action">Comment</a></li>
+                        <li><a href="#" data-value="another action">Question</a></li>
+                        <li><a href="#" data-value="something else here">Other</a></li>
+                    </ul>
+                </div><br />
+                <div>
+                    <textarea rows="8" cols="30" class="input" placeholder="What would you like to tell us..."></textarea>                    
+                </div><br />
+                <div><button class="btn btn-default" type="submit">Submit</button></div>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <h4>You can also stop by or give us a call.</h4>
+        <address class="col-sm-offset-4 col-sm-4">
+            123 N. 456 E. Ste. 789<br />
+            Salt Lake City, Ut 84561<br />
+            <abbr title="Phone">P:</abbr>
+            801.867.5309 <br />
+            <abbr title="Fax">F:</abbr>
+            801.867.5310
+        </address>
+    </div>
+</div>

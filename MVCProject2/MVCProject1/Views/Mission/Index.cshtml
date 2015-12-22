@@ -1,0 +1,107 @@
+﻿@model IEnumerable<MVCProject1.Models.MissionModel>
+
+@{
+    ViewBag.Title = "Missions Database";
+    Layout = "~/Views/Shared/_Layout_fluid.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create New Mission", "Create")
+</p>
+<table class="table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.missionPresidentPicLink)
+        </th>  
+        <th>
+            @Html.DisplayNameFor(model => model.missionFlagLink)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.missionName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.missionPresidentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.missionLanguage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.missionClimate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.missionDomReligion)
+        </th>      
+        <th>
+            @Html.DisplayNameFor(model => model.missionAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.missionCity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.missionState)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.missionCountry)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.missionZip)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <img src=@Html.DisplayFor(model => item.missionPresidentPicLink) alt="Alternate Text" class="img-thumbnail" style="height:175px" />
+        </td>
+        <td>            
+            <img src=@Html.DisplayFor(model => item.missionFlagLink) alt="Alternate Text" class="img-thumbnail" style="height:175px"/>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.missionName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.missionPresidentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.missionLanguage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.missionClimate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.missionDomReligion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.missionAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.missionCity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.missionState)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.missionCountry)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.missionZip)
+        </td>
+        <td>
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    Edit <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li>@Html.ActionLink("Edit", "Edit", new { id = item.missionID })</li>
+                    <li>@Html.ActionLink("Details", "Details", new { id = item.missionID })</li>
+                    <li>@Html.ActionLink("Delete", "Delete", new { id = item.missionID })</li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+}
+
+</table>
