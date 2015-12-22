@@ -1,0 +1,61 @@
+﻿@model MVCProject1.Models.MissionModel
+@using Microsoft.AspNet.Identity
+
+
+@if (Request.IsAuthenticated)
+{
+    <div class="row">
+        <h2>FAQ</h2>
+        <div class="panel-group" id="accordion">
+            @{int i = 6;}
+            @foreach (var item in Model.MissionQuestion)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            @{string collapseid = "collapse" + Convert.ToString(i);}
+                            <a data-toggle="collapse" data-parent="#accordion" href=#@collapseid>@Html.DisplayFor(model => item.question)</a>
+                        </h4>
+                        <div class="text-right">Asked by: @Html.DisplayTextFor(model => item.User.userFirstName) @Html.DisplayTextFor(model => item.User.userLastName)</div>
+                    </div>
+                    <div id="@collapseid" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            @Html.DisplayFor(model => item.answer)
+                        </div>
+                        <div class="panel-body text-center">
+                            @using (Html.BeginForm("Reply", "Missions", new { id = item.missionQuestionID, missionid = Model.missionID }, FormMethod.Post))
+                            {
+                                @Html.TextBox("Reply here", "", new { style = "width: 600px", placeholder = "Reply here..." })
+                                <button class="btn btn-default" style="padding:unset; width:100px" type="submit">Reply</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+                            i++;
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="text-center">
+            <h3>Got a question you didnt see here?</h3>
+            @using (Html.BeginForm("Question", "Missions", new { missionid = Model.missionID, email = User.Identity.GetUserName() }, FormMethod.Post))
+            {
+                @Html.TextBox("Question", "", new { style = "width: 600px", placeholder = "Ask your question here..." })
+                <button class="btn btn-default" style="padding:unset; width:100px" type="submit">Ask</button>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div class="panel panel-default">
+        <div class="panel-heading text-center">Your must be logged in to view the FAQ content.</div>
+        <div class="panel-body text-center">
+            <a class="btn btn-default " href="/Account/Login">Login here!</a>
+        </div>
+    </div>
+}
+
+
+
+
